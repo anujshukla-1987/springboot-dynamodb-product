@@ -29,11 +29,17 @@ In default settings you will see application running on port 8080 and below url 
 
 ### API Endpoints for Postman
 http://localhost:8080/api/products (To Get all products) GET
+
 http://localhost:8080/api/products/{id} (To Get a product) GET
+
 http://localhost:8080/api/products/delete/{id} (To delete a product) DELETE
+
 http://localhost:8080/api/products/add (To add a product) POST
+
 http://localhost:8080/api/products/update/{id} (To update a product) PUT
+
 http://localhost:8080/api/products/reserve/{id} (To reserve a product) PUT
+
 
 All the GET calls are secured with user role so use  **username:user & password:password**
 
