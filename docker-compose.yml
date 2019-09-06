@@ -1,0 +1,21 @@
+version: "3.0"
+
+services:
+
+  dynamodb-local:
+    build: ./dynamodb-local/
+    container_name: dynamodb-local
+    ports:
+      - 8000:8000
+
+  spring-boot-api:
+    build: ./api/
+    container_name: api
+    ports:
+      - 8080:8080
+
+  angular-frontend-nginx:
+    build: ./webapp/
+    container_name: angular-frontend-nginx
+    ports:
+      - 80:80
