@@ -13,7 +13,7 @@ This is a basic crud operation web project with springboot and angularJs as fron
 
 ### Running Application via Docker compose
 
-In the root of the project Run below command
+Checkout the code and in the root of the project Run below command
 
 ```bash
 docker-compose up --build
