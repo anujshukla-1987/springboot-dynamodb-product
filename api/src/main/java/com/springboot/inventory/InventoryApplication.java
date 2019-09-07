@@ -11,6 +11,16 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 
+import javax.annotation.PostConstruct;
+
+import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
+import com.amazonaws.services.dynamodbv2.model.CreateTableRequest;
+import com.amazonaws.services.dynamodbv2.model.ProvisionedThroughput;
+import com.amazonaws.services.dynamodbv2.model.ResourceInUseException;
+
+import com.springboot.inventory.model.Product;
+
 @SpringBootApplication 
 @EnableScheduling
 @ComponentScan(basePackages = { "com.springboot.inventory" })
@@ -22,25 +32,27 @@ public class InventoryApplication {
     @Autowired
     Job job;
     
-    /* Uncomment for initial setup on localDB
+    
      
-     private DynamoDBMapper dynamoDBMapper;
+    private DynamoDBMapper dynamoDBMapper;
 
     @Autowired
     private AmazonDynamoDB amazonDynamoDB;
     
-	@Autowired
-	ProductRepository productRepository;
+	//@Autowired
+	//ProductRepository productRepository;
     
     @PostConstruct
 	public void init() {
 		
 		createProductCatalogTable();
-		Product product1 = new Product("Item1", "Location1", false, new BigDecimal("123.12"));
-		productRepository.save(product1);
-		
-		Product product2 = new Product("Item2", "Location2", false, new BigDecimal("124132.12"));
-		productRepository.save(product2);		
+		/*
+		 * Product product1 = new Product("Item1", "Location1", false, new
+		 * BigDecimal("123.12")); productRepository.save(product1);
+		 * 
+		 * Product product2 = new Product("Item2", "Location2", false, new
+		 * BigDecimal("124132.12")); productRepository.save(product2);
+		 */
 	}
 
 	public void createProductCatalogTable(){
@@ -55,7 +67,7 @@ public class InventoryApplication {
         } catch (ResourceInUseException e) {
             
         }
-	}*/
+	}
 
 	public static void main(String[] args) {
 		SpringApplication.run(InventoryApplication.class, args);

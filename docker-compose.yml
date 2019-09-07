@@ -2,20 +2,33 @@ version: "3.0"
 
 services:
 
-  dynamodb-local:
+  dynamodb:
     build: ./dynamodb-local/
     container_name: dynamodb-local
     ports:
       - 8000:8000
+    networks:
+      - myNetwork
 
   spring-boot-api:
     build: ./api/
     container_name: api
     ports:
       - 8080:8080
+    networks:
+      - myNetwork
+    links:
+      - dynamodb
 
   angular-frontend-nginx:
     build: ./webapp/
     container_name: angular-frontend-nginx
     ports:
-      - 80:80
+      - 8081:80
+    networks:
+      - myNetwork
+
+networks:
+  myNetwork:
+    driver: "bridge"
+    

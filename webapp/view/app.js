@@ -24,10 +24,10 @@ app.controller('ProductCRUDCtrl', ['$scope','ProductCRUDService', function ($sco
           function error (response ){
               $scope.message = '';
               if (response.status === 404){
-                  $scope.errorMessage = 'User not found!';
+                  $scope.errorMessage = 'Product not found!';
               }
               else {
-                  $scope.errorMessage = "Error getting user!";
+                  $scope.errorMessage = "Error getting product!";
               }
           });
     }
@@ -91,44 +91,50 @@ app.controller('ProductCRUDCtrl', ['$scope','ProductCRUDService', function ($sco
 
 }]);
 
-app.service('ProductCRUDService',['$http', function ($http) {
+app.service('ProductCRUDService',['$http', function ($http) {	
+	
+	$http.defaults.headers.common = {"Access-Control-Request-Headers": "accept, origin, authorization"};
+	$http.defaults.headers.common['Authorization'] = 'Basic YWRtaW46cGFzc3dvcmQ='
 	
     this.getProduct = function getProduct(id){
         return $http({
           method: 'GET',
-          url: '/api/products/'+ id
+          headers: {
+        	   'Content-Type': undefined
+        	 },
+          url: 'http://localhost:8080/api/products/'+ id
         });
 	}
     
     this.reserveProduct = function getProduct(id){
         return $http({
           method: 'PUT',
-          url: '/api/products/reserve/'+ id
+          url: 'http://localhost:8080/api/products/reserve/'+ id
         });
 	}
 	
-    this.addProduct = function addUser(productName, location, price, reserved){
+    this.addProduct = function addProduct(productName, location, price, reserved){
     	if(reserved === undefined) {
     		reserved = false;
     	}
         return $http({
           method: 'POST',
-          url: '/api/products/add',
+          url: 'http://localhost:8080/api/products/add',
           data: {productName:productName, location:location, price:price, reserved:reserved}
         });
     }
 	
-    this.deleteProduct = function deleteUser(id){
+    this.deleteProduct = function deleteProduct(id){
         return $http({
           method: 'DELETE',
-          url: '/api/products/delete/'+id
+          url: 'http://localhost:8080/api/products/delete/'+id
         })
     }
 	
-    this.updateProduct = function updateUser(product){
+    this.updateProduct = function updateProduct(product){
         return $http({
           method: 'PUT',
-          url: '/api/products/update/'+ product.id,
+          url: 'http://localhost:8080/api/products/update/'+ product.id,
           data: {productName:product.productName, location:product.location, reserved:product.reserved, price:product.price}
         })
     }
@@ -136,7 +142,7 @@ app.service('ProductCRUDService',['$http', function ($http) {
     this.getAllProducts = function getAllProducts(){
         return $http({
           method: 'GET',
-          url: '/api/products'
+          url: 'http://localhost:8080/api/products'
         });
     }
 
