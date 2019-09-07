@@ -18,10 +18,6 @@ Checkout the code and in the root of the project Run below command
 ```bash
 docker-compose up --build
 ```
-
-
-##### Local DynamoDB Setup
-
 In default settings you will see application running on port 8081 and below url will land you to home page
 [http://localhost:8081/products.html](http://localhost:8081/products.html)
 
