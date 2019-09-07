@@ -9,6 +9,7 @@ This is a basic crud operation web project with springboot and angularJs as fron
 * Batch Process powered by Spring Batch
 * Secured API using Spring Security
 * Local DynamoDB integration
+* Angular Frontend powered with NGINX
 
 ### Running Application via Docker compose
 
